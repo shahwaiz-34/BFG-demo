@@ -49,55 +49,53 @@ function ResultCard({ item, i }: { item: (typeof items)[number]; i: number }) {
       onMouseLeave={() => setHover(false)}
       className="group relative overflow-hidden rounded-3xl border border-border bg-surface transition-all duration-500 hover:-translate-y-2 hover:border-neon/50 hover:shadow-neon"
     >
-      {/* Glow */}
       <div className="pointer-events-none absolute -inset-px rounded-3xl bg-gradient-to-b from-neon/20 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-      <div className="relative">
+      {/* Header — moved ABOVE image so the photo isn't covered */}
+      <div className="relative flex items-center justify-between gap-3 border-b border-border bg-surface/80 px-5 py-3.5">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-background/60 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-neon ring-1 ring-neon/30">
+          <Sparkles className="h-3 w-3" /> Verified
+        </span>
+        <span className="rounded-full bg-neon px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground shadow-neon">
+          {item.program}
+        </span>
+      </div>
+
+      {/* Image — fully visible, no overlays */}
+      <div className="relative bg-black">
         <img
           src={item.img}
           alt={`${item.name} transformation`}
           className="aspect-[4/5] w-full object-cover transition-transform duration-700 group-hover:scale-105"
           loading="lazy"
         />
-
-        {/* Top overlay */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between p-4">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-background/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-neon backdrop-blur ring-1 ring-neon/30">
-            <Sparkles className="h-3 w-3" /> Verified Member
-          </span>
-          <span className="rounded-full bg-neon px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary-foreground shadow-neon">
-            {item.program}
-          </span>
-        </div>
-
-        {/* Bottom gradient + stats */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-background via-background/80 to-transparent pt-20">
-          <div className="px-5 pb-5">
-            <div className="flex items-end justify-between gap-3">
-              <div>
-                <h3 className="font-display text-2xl leading-none">{item.name}</h3>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Age {item.age} · {item.duration}
-                </p>
-              </div>
-              <div className="flex items-center gap-1.5 rounded-lg border border-neon/30 bg-neon/10 px-2.5 py-1.5 text-neon">
-                <Metric className="h-4 w-4" />
-                <span className="font-display text-sm tracking-wide">{item.metric.label}</span>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
+      {/* Stats + quote */}
       <figcaption className="relative border-t border-border bg-surface/80 p-5">
-        <Quote
-          className={`absolute right-4 top-4 h-8 w-8 text-neon/20 transition-transform duration-500 ${
-            hover ? "scale-110 rotate-6 text-neon/40" : ""
-          }`}
-        />
-        <p className="pr-10 text-sm leading-relaxed text-muted-foreground">
-          "{item.quote}"
-        </p>
+        <div className="flex items-end justify-between gap-3">
+          <div>
+            <h3 className="font-display text-2xl leading-none">{item.name}</h3>
+            <p className="mt-1 text-xs text-muted-foreground">
+              Age {item.age} · {item.duration}
+            </p>
+          </div>
+          <div className="flex items-center gap-1.5 rounded-lg border border-neon/30 bg-neon/10 px-2.5 py-1.5 text-neon">
+            <Metric className="h-4 w-4" />
+            <span className="font-display text-sm tracking-wide">{item.metric.label}</span>
+          </div>
+        </div>
+
+        <div className="relative mt-4 border-t border-border pt-4">
+          <Quote
+            className={`absolute right-0 top-3 h-7 w-7 text-neon/20 transition-transform duration-500 ${
+              hover ? "scale-110 rotate-6 text-neon/40" : ""
+            }`}
+          />
+          <p className="pr-9 text-sm leading-relaxed text-muted-foreground">
+            "{item.quote}"
+          </p>
+        </div>
       </figcaption>
     </motion.figure>
   );
