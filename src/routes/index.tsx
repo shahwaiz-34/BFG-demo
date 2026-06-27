@@ -1,29 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Navbar } from "@/components/site/Navbar";
+import { Hero } from "@/components/site/Hero";
+import { About } from "@/components/site/About";
+import { HowItWorks } from "@/components/site/HowItWorks";
+import { Transformations } from "@/components/site/Transformations";
+import { VideoTrust } from "@/components/site/VideoTrust";
+import { Plans } from "@/components/site/Plans";
+import { Visit } from "@/components/site/Visit";
+import { Footer } from "@/components/site/Footer";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Physiques Gym — Premium Fitness in Johar Town, Lahore" },
+      {
+        name: "description",
+        content:
+          "Physiques is Lahore's premium gym in Johar Town. Personal training, CrossFit, sauna & steam. Build your best physique with expert coaches.",
+      },
+      { property: "og:title", content: "Physiques Gym — Lahore" },
+      {
+        property: "og:description",
+        content:
+          "Premium training environment in Johar Town. Personal training, custom plans, real transformations.",
+      },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="min-h-screen bg-background text-foreground">
+      <Navbar />
+      <Hero />
+      <About />
+      <HowItWorks />
+      <Transformations />
+      <VideoTrust />
+      <Plans />
+      <Visit />
+      <Footer />
+    </main>
   );
 }
