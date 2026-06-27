@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Dumbbell, Star } from "lucide-react";
-import logo from "@/assets/logo.asset.json";
+import { ArrowRight, Dumbbell, MapPin, Star } from "lucide-react";
+import building from "@/assets/building.asset.json";
 import { site } from "@/lib/site";
 
 export function Hero() {
