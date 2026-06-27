@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Dumbbell, Star } from "lucide-react";
-import logo from "@/assets/logo.asset.json";
+import { ArrowRight, Dumbbell, MapPin, Star } from "lucide-react";
+import building from "@/assets/building.asset.json";
 import { site } from "@/lib/site";
 
 export function Hero() {
@@ -100,16 +100,41 @@ export function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative lg:col-span-5"
         >
-          <div className="relative mx-auto aspect-square w-full max-w-md">
-            <div className="absolute inset-0 animate-pulse rounded-full bg-neon/20 blur-3xl" />
-            <motion.img
-              src={logo.url}
-              alt="Physiques Gym"
-              className="relative h-full w-full rounded-full object-cover ring-1 ring-neon/40 shadow-neon"
-              animate={{ rotate: [0, 2, -2, 0] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            />
-            <div className="pointer-events-none absolute inset-0 rounded-full border border-neon/20" />
+          <div className="relative mx-auto w-full max-w-xl">
+            <div className="absolute -inset-6 rounded-[2rem] bg-neon/20 blur-3xl" />
+            <div className="relative overflow-hidden rounded-[1.75rem] border border-neon/30 shadow-neon">
+              <motion.img
+                src={building.url}
+                alt="Physiques Gym building in Johar Town, Lahore"
+                className="aspect-[4/5] w-full object-cover"
+                initial={{ scale: 1.08 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.4, ease: "easeOut" }}
+              />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
+
+              <div className="absolute inset-x-0 bottom-0 p-5">
+                <div className="flex items-center gap-2 rounded-xl border border-neon/30 bg-background/60 px-3 py-2 backdrop-blur">
+                  <MapPin className="h-4 w-4 text-neon" />
+                  <span className="text-xs text-foreground/90">
+                    Johar Town · Lahore
+                  </span>
+                  <span className="ml-auto rounded-full bg-neon px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                    Open Today
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="absolute -left-4 top-6 hidden rounded-xl border border-border bg-surface/90 px-3 py-2 shadow-xl backdrop-blur sm:block"
+            >
+              <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Members</p>
+              <p className="font-display text-xl text-neon">1,200+</p>
+            </motion.div>
           </div>
         </motion.div>
       </div>
