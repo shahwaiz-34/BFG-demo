@@ -6,6 +6,7 @@ import { site } from "@/lib/site";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
+  email: z.string().trim().email("Enter a valid email").max(255),
   phone: z.string().trim().min(7, "Enter a valid phone").max(20),
   goal: z.string().trim().min(1, "Pick a goal"),
   message: z.string().trim().max(500).optional(),
