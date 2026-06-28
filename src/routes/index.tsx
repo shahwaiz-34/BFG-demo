@@ -42,6 +42,7 @@ function Index() {
       <About />
       <HowItWorks />
       <Transformations />
+      <Community />
       <VideoTrust />
       <Plans />
       <Reviews />
