@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import { ArrowRight, Mail, MapPin, MessageCircle, Phone, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
