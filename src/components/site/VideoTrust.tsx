@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Pause, Play, ShieldCheck, Sparkles, Users, Volume2, VolumeX } from "lucide-react";
+import { Loader2, Pause, Play, ShieldCheck, Sparkles, Users, Volume2, VolumeX } from "lucide-react";
 import { useRef, useState } from "react";
 import v1 from "@/assets/gym-vertical.asset.json";
 import v2 from "@/assets/gym-vertical-2.asset.json";
@@ -19,6 +19,8 @@ function Reel({ src, label }: { src: string; label: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [ready, setReady] = useState(false);
 
   const togglePlay = () => {
     const el = ref.current;
@@ -26,11 +28,10 @@ function Reel({ src, label }: { src: string; label: string }) {
     if (el.paused) {
       el.muted = false;
       setMuted(false);
-      el.play();
-      setPlaying(true);
+      if (!ready) setLoading(true);
+      el.play().catch(() => setLoading(false));
     } else {
       el.pause();
-      setPlaying(false);
     }
   };
 
@@ -53,6 +54,10 @@ function Reel({ src, label }: { src: string; label: string }) {
         preload="metadata"
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
+        onWaiting={() => setLoading(true)}
+        onLoadStart={() => setLoading(true)}
+        onCanPlay={() => { setLoading(false); setReady(true); }}
+        onPlaying={() => setLoading(false)}
         onClick={togglePlay}
       />
 
@@ -67,17 +72,24 @@ function Reel({ src, label }: { src: string; label: string }) {
       <button
         onClick={toggleMute}
         aria-label={muted ? "Unmute" : "Mute"}
-        className="absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full bg-background/70 text-neon backdrop-blur ring-1 ring-neon/30 transition hover:bg-neon hover:text-primary-foreground"
+        className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full bg-background/70 text-neon backdrop-blur ring-1 ring-neon/30 transition hover:bg-neon hover:text-primary-foreground"
       >
         {muted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
       </button>
+
+      {/* Loading spinner */}
+      {loading && (
+        <div className="pointer-events-none absolute inset-0 z-[5] grid place-items-center bg-black/40 backdrop-blur-sm">
+          <Loader2 className="h-10 w-10 animate-spin text-neon" />
+        </div>
+      )}
 
       {/* Play / Pause */}
       <button
         onClick={togglePlay}
         aria-label={playing ? "Pause" : "Play"}
         className={`absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/60 via-black/10 to-transparent transition ${
-          playing ? "opacity-0 group-hover:opacity-100" : "opacity-100"
+          playing && !loading ? "opacity-0 group-hover:opacity-100" : "opacity-100"
         }`}
       >
         <span className="grid h-16 w-16 place-items-center rounded-full bg-neon shadow-neon transition group-hover:scale-110">
