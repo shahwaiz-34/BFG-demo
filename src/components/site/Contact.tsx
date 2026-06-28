@@ -50,7 +50,7 @@ export function Contact() {
     }
     setErrors({});
     const text = encodeURIComponent(
-      `Hi Physiques! I'm ${parsed.data.name}. Goal: ${parsed.data.goal}. Phone: ${parsed.data.phone}.${
+      `Hi Physiques! I'm ${parsed.data.name}. Email: ${parsed.data.email}. Goal: ${parsed.data.goal}. Phone: ${parsed.data.phone}.${
         parsed.data.message ? " " + parsed.data.message : ""
       }`,
     );
