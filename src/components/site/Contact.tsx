@@ -36,6 +36,7 @@ export function Contact() {
     const form = new FormData(e.currentTarget);
     const data = {
       name: String(form.get("name") || ""),
+      email: String(form.get("email") || ""),
       phone: String(form.get("phone") || ""),
       goal: String(form.get("goal") || ""),
       message: String(form.get("message") || ""),
