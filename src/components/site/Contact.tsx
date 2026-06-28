@@ -6,6 +6,7 @@ import { site } from "@/lib/site";
 
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
+  email: z.string().trim().email("Enter a valid email").max(255),
   phone: z.string().trim().min(7, "Enter a valid phone").max(20),
   goal: z.string().trim().min(1, "Pick a goal"),
   message: z.string().trim().max(500).optional(),
@@ -35,6 +36,7 @@ export function Contact() {
     const form = new FormData(e.currentTarget);
     const data = {
       name: String(form.get("name") || ""),
+      email: String(form.get("email") || ""),
       phone: String(form.get("phone") || ""),
       goal: String(form.get("goal") || ""),
       message: String(form.get("message") || ""),
@@ -48,7 +50,7 @@ export function Contact() {
     }
     setErrors({});
     const text = encodeURIComponent(
-      `Hi Physiques! I'm ${parsed.data.name}. Goal: ${parsed.data.goal}. Phone: ${parsed.data.phone}.${
+      `Hi Physiques! I'm ${parsed.data.name}. Email: ${parsed.data.email}. Goal: ${parsed.data.goal}. Phone: ${parsed.data.phone}.${
         parsed.data.message ? " " + parsed.data.message : ""
       }`,
     );
@@ -143,7 +145,7 @@ export function Contact() {
                 </div>
               ) : (
                 <form onSubmit={onSubmit} className="relative space-y-5" noValidate>
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-5 sm:grid-cols-3">
                     <Field
                       label="Full Name"
                       name="name"
@@ -151,6 +153,15 @@ export function Contact() {
                       placeholder="Ahmed Khan"
                       error={errors.name}
                       maxLength={80}
+                    />
+                    <Field
+                      label="Email"
+                      name="email"
+                      icon={Mail}
+                      placeholder="ahmed@email.com"
+                      type="email"
+                      error={errors.email}
+                      maxLength={255}
                     />
                     <Field
                       label="Phone"
