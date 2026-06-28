@@ -96,10 +96,15 @@ export function Navbar() {
               ))}
               <li>
                 <a
-                  href={`tel:${site.phone}`}
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpen(false);
+                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
                   className="mt-2 flex items-center justify-center gap-2 rounded-full bg-neon px-5 py-3 text-sm font-semibold text-primary-foreground"
                 >
-                  <Phone className="h-4 w-4" /> Book a Trial
+                  Book Now <ArrowRight className="h-4 w-4" />
                 </a>
               </li>
             </ul>
