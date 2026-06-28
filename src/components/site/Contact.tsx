@@ -1,48 +1,26 @@
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import { ArrowRight, Mail, MapPin, MessageCircle, Phone, User } from "lucide-react";
+import { ArrowRight, Instagram, Mail, MapPin, MessageCircle, Phone, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { site } from "@/lib/site";
 
-function normalizePhone(raw: string): { digits: string; display: string; valid: boolean } {
-  const digitsOnly = raw.replace(/\D/g, "");
-  let digits = digitsOnly;
-
-  // Pakistani mobile: local 03XXXXXXXXX (11 digits) → intl 923XXXXXXXXX (12 digits)
-  if (digits.startsWith("0") && digits.length === 11) {
-    digits = "92" + digits.slice(1);
-  }
-
-  const isValid = /^923\d{9}$/.test(digits);
-
-  // Format for display in WhatsApp message: +92 309 759 1514
-  let display = digits;
-  if (digits.startsWith("92") && digits.length === 12) {
-    display = `+${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5, 8)} ${digits.slice(8)}`;
-  }
-
-  return { digits, display, valid: isValid };
-}
-
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
   email: z.string().trim().email("Enter a valid email").max(255),
-  phone: z.string().trim().max(20),
+  phone: z.string().trim().max(20).optional().or(z.literal("")),
   goal: z.string().trim().min(1, "Pick a goal"),
   message: z.string().trim().max(500).optional(),
-}).superRefine((val, ctx) => {
-  const { valid } = normalizePhone(val.phone);
-  if (!valid) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: "Enter a valid Pakistani mobile number (e.g. 0309XXXXXXX)",
-      path: ["phone"],
-    });
-  }
 });
 
-const goals = ["Weight Loss", "Muscle Gain", "Personal Training", "Summer Booster", "General Fitness"];
+const goals = [
+  "Weight Loss",
+  "Muscle Gain",
+  "Personal Training",
+  "Summer Booster",
+  "General Fitness",
+  "Ladies-only Slot",
+];
 
 export function Contact() {
   const [sent, setSent] = useState(false);
@@ -57,11 +35,11 @@ export function Contact() {
         setSent(false);
       }
     };
-    window.addEventListener("physiques:select-goal", onSelect as EventListener);
-    return () => window.removeEventListener("physiques:select-goal", onSelect as EventListener);
+    window.addEventListener("bfg:select-goal", onSelect as EventListener);
+    return () => window.removeEventListener("bfg:select-goal", onSelect as EventListener);
   }, []);
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const data = {
@@ -79,16 +57,22 @@ export function Contact() {
       return;
     }
     setErrors({});
-    const phoneFmt = normalizePhone(parsed.data.phone).display;
-    const text = encodeURIComponent(
-      `Hi Physiques! I'm ${parsed.data.name}.\nEmail: ${parsed.data.email}\nGoal: ${parsed.data.goal}\nPhone: ${phoneFmt}${
-        parsed.data.message ? "\nNote: " + parsed.data.message : ""
-      }`,
-    );
-    window.open(`https://wa.me/${site.whatsapp}?text=${text}`, "_blank", "noopener");
+    const summary =
+      `Hi BFG! I'm ${parsed.data.name}.\n` +
+      `Email: ${parsed.data.email}\n` +
+      (parsed.data.phone ? `Phone: ${parsed.data.phone}\n` : "") +
+      `Goal: ${parsed.data.goal}` +
+      (parsed.data.message ? `\nNote: ${parsed.data.message}` : "");
+
+    try {
+      await navigator.clipboard?.writeText(summary);
+    } catch {
+      /* clipboard may be unavailable */
+    }
+    window.open(site.social.instagramDM, "_blank", "noopener");
     setSent(true);
-    toast.success("Message forwarded to WhatsApp!", {
-      description: "A coach will reach out within hours to confirm your trial.",
+    toast.success("Instagram DM opened — your message is copied!", {
+      description: "Paste it and hit send. A coach will reply within hours.",
     });
   };
 
@@ -113,31 +97,36 @@ export function Contact() {
               Book your <span className="text-neon text-glow">free trial.</span>
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Tell us your goal — a coach will reach out within hours to schedule
+              Tell us your goal — a BFG coach will reply within hours to confirm
               your tour and trial session.
             </p>
 
             <ul className="mt-8 space-y-3">
               <li className="flex items-start gap-3 rounded-xl border border-border bg-surface/60 p-4">
-                <Phone className="mt-0.5 h-5 w-5 text-neon" />
+                <Instagram className="mt-0.5 h-5 w-5 text-neon" />
                 <div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Call</div>
-                  <a href={`tel:${site.phone}`} className="text-sm font-medium hover:text-neon">
-                    {site.phone}
+                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Instagram</div>
+                  <a
+                    href={site.social.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm font-medium hover:text-neon"
+                  >
+                    {site.social.instagramHandle} · {site.followers} followers
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-3 rounded-xl border border-border bg-surface/60 p-4">
                 <MessageCircle className="mt-0.5 h-5 w-5 text-neon" />
                 <div>
-                  <div className="text-xs uppercase tracking-wider text-muted-foreground">WhatsApp</div>
+                  <div className="text-xs uppercase tracking-wider text-muted-foreground">Direct Message</div>
                   <a
-                    href={`https://wa.me/${site.whatsapp}`}
+                    href={site.social.instagramDM}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noreferrer"
                     className="text-sm font-medium hover:text-neon"
                   >
-                    Chat with us
+                    Chat with us on Instagram
                   </a>
                 </div>
               </li>
@@ -164,11 +153,12 @@ export function Contact() {
               {sent ? (
                 <div className="flex min-h-[420px] flex-col items-center justify-center text-center">
                   <div className="grid h-16 w-16 place-items-center rounded-full bg-neon/15 text-neon ring-1 ring-neon/40">
-                    <MessageCircle className="h-7 w-7" />
+                    <Instagram className="h-7 w-7" />
                   </div>
-                  <h3 className="mt-6 font-display text-3xl">Message Sent</h3>
+                  <h3 className="mt-6 font-display text-3xl">Message Ready</h3>
                   <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-                    We've opened WhatsApp for you. A coach will get back within hours.
+                    We've opened Instagram and copied your message — just paste
+                    and send. A coach will reply within hours.
                   </p>
                   <button
                     onClick={() => setSent(false)}
@@ -198,7 +188,7 @@ export function Contact() {
                       maxLength={255}
                     />
                     <Field
-                      label="Phone"
+                      label="Phone (optional)"
                       name="phone"
                       icon={Phone}
                       placeholder="03XX XXXXXXX"
@@ -254,7 +244,7 @@ export function Contact() {
                     type="submit"
                     className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-neon px-7 py-4 text-sm font-semibold text-primary-foreground shadow-neon transition hover:brightness-110"
                   >
-                    Send via WhatsApp
+                    Send via Instagram
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                   </button>
                   <p className="text-center text-[11px] text-muted-foreground">

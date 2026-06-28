@@ -1,25 +1,44 @@
 export const site = {
-  name: "Physiques",
+  name: "BFG",
+  fullName: "Body Fit Gym",
   tagline: "Train Hard. Become Better.",
-  phone: "+923097591514",
-  whatsapp: "923097591514",
-  address: "315, H3, Expo Center Rd, Block H 3 Phase 2 Johar Town, Lahore, 54000",
-  rating: 4.5,
-  reviews: 675,
+  address:
+    "Office 1, Ground Floor, Rehman Plaza, G-11 Markaz, Islamabad, 44000",
+  city: "Islamabad",
+  rating: 4.2,
+  reviews: 206,
+  followers: "14.1K+",
+  ladiesTime: "10:00 AM – 2:00 PM",
+  social: {
+    instagram: "https://www.instagram.com/bodyfit_gyms",
+    instagramHandle: "@bodyfit_gyms",
+    facebook: "https://www.facebook.com/share/18bZYTDPuW/",
+    tiktok: "https://www.tiktok.com/@bodyfitgyms313",
+    instagramDM: "https://ig.me/m/bodyfit_gyms",
+  },
   mapEmbed:
-    "https://www.google.com/maps?q=Physiques+Fitness+Gym+Johar+Town+Lahore&output=embed",
+    "https://www.google.com/maps?q=Body+Fit+Gym+Rehman+Plaza+G-11+Markaz+Islamabad&output=embed",
   mapLink:
-    "https://www.google.com/maps/search/?api=1&query=Physiques+Fitness+Gym+Johar+Town+Lahore",
+    "https://www.google.com/maps/search/?api=1&query=Body+Fit+Gym+Rehman+Plaza+G-11+Markaz+Islamabad",
 };
 
 export const hours = [
-  { day: "Monday", time: "6–10 AM · 4–11 PM", open: true },
-  { day: "Tuesday", time: "6–10 AM · 4–11 PM", open: true },
-  { day: "Wednesday", time: "6–10 AM · 4–11 PM", open: true },
-  { day: "Thursday", time: "6–10 AM · 4–11 PM", open: true },
-  { day: "Friday", time: "6–10 AM · 4–11 PM", open: true },
-  { day: "Saturday", time: "Off", open: false },
-  { day: "Sunday", time: "Closed", open: false },
+  { day: "Monday", time: "6 AM – 12 AM", open: true },
+  { day: "Tuesday", time: "6 AM – 12 AM", open: true },
+  { day: "Wednesday", time: "6 AM – 12 AM", open: true },
+  { day: "Thursday", time: "6 AM – 12 AM", open: true },
+  { day: "Friday", time: "6 AM – 12 AM", open: true },
+  { day: "Saturday", time: "6 AM – 12 AM", open: true },
+  { day: "Sunday", time: "2 PM – 12 AM", open: true },
+];
+
+export const amenities = [
+  "On-site services",
+  "Free street parking",
+  "Free parking slot",
+  "Secure personal lockers",
+  "Toilets",
+  "Ladies-only timing (10 AM – 2 PM)",
 ];
 
 export const plans = [
@@ -32,7 +51,7 @@ export const plans = [
       "Full gym floor access",
       "Cardio + strength zones",
       "Locker room access",
-      "Open during all gym hours",
+      "Open all gym hours",
     ],
   },
   {
@@ -56,8 +75,7 @@ export const plans = [
     tag: "Premium",
     features: [
       "Premium training environment",
-      "CrossFit programming",
-      "Sauna & steam room access",
+      "Strength & conditioning",
       "Priority coach scheduling",
       "All PT benefits included",
     ],
