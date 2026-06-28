@@ -4,12 +4,41 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { site } from "@/lib/site";
 
+function normalizePhone(raw: string): { digits: string; display: string; valid: boolean } {
+  const digitsOnly = raw.replace(/\D/g, "");
+  let digits = digitsOnly;
+
+  // Pakistani mobile: local 03XXXXXXXXX (11 digits) → intl 923XXXXXXXXX (12 digits)
+  if (digits.startsWith("0") && digits.length === 11) {
+    digits = "92" + digits.slice(1);
+  }
+
+  const isValid = /^923\d{9}$/.test(digits);
+
+  // Format for display in WhatsApp message: +92 309 759 1514
+  let display = digits;
+  if (digits.startsWith("92") && digits.length === 12) {
+    display = `+${digits.slice(0, 2)} ${digits.slice(2, 5)} ${digits.slice(5, 8)} ${digits.slice(8)}`;
+  }
+
+  return { digits, display, valid: isValid };
+}
+
 const schema = z.object({
   name: z.string().trim().min(2, "Enter your name").max(80),
   email: z.string().trim().email("Enter a valid email").max(255),
-  phone: z.string().trim().min(7, "Enter a valid phone").max(20),
+  phone: z.string().trim().max(20),
   goal: z.string().trim().min(1, "Pick a goal"),
   message: z.string().trim().max(500).optional(),
+}).superRefine((val, ctx) => {
+  const { valid } = normalizePhone(val.phone);
+  if (!valid) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "Enter a valid Pakistani mobile number (e.g. 0309XXXXXXX)",
+      path: ["phone"],
+    });
+  }
 });
 
 const goals = ["Weight Loss", "Muscle Gain", "Personal Training", "Summer Booster", "General Fitness"];
