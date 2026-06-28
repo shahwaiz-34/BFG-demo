@@ -144,7 +144,7 @@ export function Contact() {
                 </div>
               ) : (
                 <form onSubmit={onSubmit} className="relative space-y-5" noValidate>
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-5 sm:grid-cols-3">
                     <Field
                       label="Full Name"
                       name="name"
@@ -152,6 +152,15 @@ export function Contact() {
                       placeholder="Ahmed Khan"
                       error={errors.name}
                       maxLength={80}
+                    />
+                    <Field
+                      label="Email"
+                      name="email"
+                      icon={Mail}
+                      placeholder="ahmed@email.com"
+                      type="email"
+                      error={errors.email}
+                      maxLength={255}
                     />
                     <Field
                       label="Phone"
