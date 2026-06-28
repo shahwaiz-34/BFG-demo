@@ -168,13 +168,14 @@ export function Contact() {
                       Your Goal
                     </label>
                     <div className="flex flex-wrap gap-2">
-                      {goals.map((g, i) => (
+                      {goals.map((g) => (
                         <label key={g} className="cursor-pointer">
                           <input
                             type="radio"
                             name="goal"
                             value={g}
-                            defaultChecked={i === 0}
+                            checked={selectedGoal === g}
+                            onChange={() => setSelectedGoal(g)}
                             className="peer sr-only"
                           />
                           <span className="block rounded-full border border-border bg-background/40 px-4 py-2 text-xs font-medium text-muted-foreground transition hover:border-neon/50 hover:text-foreground peer-checked:border-neon peer-checked:bg-neon peer-checked:text-primary-foreground">
