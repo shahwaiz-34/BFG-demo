@@ -152,8 +152,8 @@ export function Reviews() {
       </div>
 
       <style>{`
-        #reviews .swiper-pagination-bullet { background: hsl(var(--muted-foreground) / 0.4); opacity: 1; }
-        #reviews .swiper-pagination-bullet-active { background: oklch(var(--neon)); }
+        #reviews .swiper-pagination-bullet { background: color-mix(in oklab, var(--neon) 25%, transparent); opacity: 1; }
+        #reviews .swiper-pagination-bullet-active { background: var(--neon); }
       `}</style>
     </section>
   );
