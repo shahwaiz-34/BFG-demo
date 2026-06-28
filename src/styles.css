@@ -40,30 +40,31 @@
 
 :root {
   --radius: 0.75rem;
-  /* Brand: black + neon yellow-green from logo */
-  --background: oklch(0.13 0 0);
+  /* BFG brand: pure black + signature yellow from the BFG logo */
+  --background: oklch(0.12 0 0);
   --foreground: oklch(0.98 0 0);
-  --surface: oklch(0.17 0 0);
-  --surface-elevated: oklch(0.21 0 0);
-  --card: oklch(0.17 0 0);
+  --surface: oklch(0.16 0 0);
+  --surface-elevated: oklch(0.2 0 0);
+  --card: oklch(0.16 0 0);
   --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.17 0 0);
+  --popover: oklch(0.16 0 0);
   --popover-foreground: oklch(0.98 0 0);
-  --neon: oklch(0.92 0.24 125);
-  --neon-glow: oklch(0.95 0.22 128);
-  --primary: oklch(0.92 0.24 125);
-  --primary-foreground: oklch(0.12 0 0);
+  /* BFG yellow — matches the logo's #F2C200-ish tone */
+  --neon: oklch(0.86 0.18 95);
+  --neon-glow: oklch(0.9 0.2 96);
+  --primary: oklch(0.86 0.18 95);
+  --primary-foreground: oklch(0.1 0 0);
   --secondary: oklch(0.21 0 0);
   --secondary-foreground: oklch(0.98 0 0);
   --muted: oklch(0.21 0 0);
-  --muted-foreground: oklch(0.68 0 0);
-  --accent: oklch(0.92 0.24 125);
-  --accent-foreground: oklch(0.12 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.86 0.18 95);
+  --accent-foreground: oklch(0.1 0 0);
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(0.27 0 0);
-  --input: oklch(0.24 0 0);
-  --ring: oklch(0.92 0.24 125);
+  --border: oklch(0.26 0 0);
+  --input: oklch(0.23 0 0);
+  --ring: oklch(0.86 0.18 95);
 }
 
 @layer base {

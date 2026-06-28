@@ -14,7 +14,7 @@ const reviews = [
     role: "Member · 2 years",
     initials: "AR",
     stars: 5,
-    text: "Best gym in Johar Town hands down. Equipment is premium, the floor is always clean and the coaches actually care about your progress.",
+    text: "Best gym in G-11 hands down. Equipment is premium, the floor is always clean and the coaches actually care about your progress.",
   },
   {
     name: "Sara Khan",
@@ -35,7 +35,7 @@ const reviews = [
     role: "Member · 1 year",
     initials: "HM",
     stars: 5,
-    text: "Women-friendly environment, professional staff and proper hygiene. Finally a gym in Lahore that feels world-class.",
+    text: "Ladies-only timing is a game changer — professional staff, proper hygiene, and a workout floor that finally feels world-class.",
   },
   {
     name: "Usman Tariq",

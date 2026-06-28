@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/logo.asset.json";
-
+import logo from "@/assets/bfg-logo.asset.json";
 
 const links = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
   { label: "How It Works", href: "#how" },
-  { label: "Results", href: "#results" },
+  { label: "Floor", href: "#community" },
   { label: "Plans", href: "#plans" },
   { label: "Visit", href: "#visit" },
 ];
@@ -24,6 +23,11 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const scrollToContact = (e: React.MouseEvent) => {
+    e.preventDefault();
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
@@ -34,13 +38,22 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="#home" className="flex items-center gap-2.5">
-          <img src={logo.url} alt="Physiques" className="h-10 w-10 rounded-full object-cover ring-1 ring-neon/30" />
-          <span className="font-display text-xl tracking-wide">
-            PHYSI<span className="text-neon">QUES</span>
-          </span>
+          <img
+            src={logo.url}
+            alt="Body Fit Gym"
+            className="h-10 w-10 rounded-lg bg-black object-contain p-1 ring-1 ring-neon/30"
+          />
+          <div className="flex flex-col leading-none">
+            <span className="font-display text-xl tracking-wide">
+              B<span className="text-neon">F</span>G
+            </span>
+            <span className="hidden text-[9px] font-semibold uppercase tracking-[0.25em] text-muted-foreground sm:block">
+              Body Fit Gym
+            </span>
+          </div>
         </a>
 
-        <ul className="hidden items-center gap-8 lg:flex">
+        <ul className="hidden items-center gap-7 lg:flex">
           {links.map((l) => (
             <li key={l.href}>
               <a
@@ -55,10 +68,7 @@ export function Navbar() {
 
         <a
           href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
-          }}
+          onClick={scrollToContact}
           className="group hidden items-center gap-2 rounded-full bg-neon px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-neon transition hover:brightness-110 lg:inline-flex"
         >
           Book Now
@@ -98,9 +108,8 @@ export function Navbar() {
                 <a
                   href="#contact"
                   onClick={(e) => {
-                    e.preventDefault();
                     setOpen(false);
-                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                    scrollToContact(e);
                   }}
                   className="mt-2 flex items-center justify-center gap-2 rounded-full bg-neon px-5 py-3 text-sm font-semibold text-primary-foreground"
                 >

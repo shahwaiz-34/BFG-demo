@@ -10,7 +10,7 @@ const goalMap: Record<string, string> = {
 
 function choosePlan(planName: string) {
   const goal = goalMap[planName] ?? planName;
-  window.dispatchEvent(new CustomEvent("physiques:select-goal", { detail: goal }));
+  window.dispatchEvent(new CustomEvent("bfg:select-goal", { detail: goal }));
   const el = document.getElementById("contact");
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }

@@ -4,7 +4,6 @@ import { Loader } from "@/components/site/Loader";
 import { Hero } from "@/components/site/Hero";
 import { About } from "@/components/site/About";
 import { HowItWorks } from "@/components/site/HowItWorks";
-import { Transformations } from "@/components/site/Transformations";
 import { Community } from "@/components/site/Community";
 import { VideoTrust } from "@/components/site/VideoTrust";
 import { Plans } from "@/components/site/Plans";
@@ -16,17 +15,17 @@ import { Footer } from "@/components/site/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Physiques Gym — Premium Fitness in Johar Town, Lahore" },
+      { title: "BFG — Body Fit Gym | Premium Fitness in G-11 Markaz, Islamabad" },
       {
         name: "description",
         content:
-          "Physiques is Lahore's premium gym in Johar Town. Personal training, CrossFit, sauna & steam. Build your best physique with expert coaches.",
+          "Body Fit Gym (BFG) is Islamabad's premium training floor in G-11 Markaz. Strength, cardio, personal training, and ladies-only hours daily.",
       },
-      { property: "og:title", content: "Physiques Gym — Lahore" },
+      { property: "og:title", content: "BFG — Body Fit Gym, Islamabad" },
       {
         property: "og:description",
         content:
-          "Premium training environment in Johar Town. Personal training, custom plans, real transformations.",
+          "Premium training floor in G-11 Markaz, Islamabad. Personal training, custom plans, ladies-only hours 10 AM – 2 PM daily.",
       },
     ],
   }),
@@ -41,7 +40,6 @@ function Index() {
       <Hero />
       <About />
       <HowItWorks />
-      <Transformations />
       <Community />
       <VideoTrust />
       <Plans />

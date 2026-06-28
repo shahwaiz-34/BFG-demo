@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Flame, ShieldCheck, Users, Sparkles } from "lucide-react";
-import building from "@/assets/building.asset.json";
-import lobby from "@/assets/lobby.asset.json";
+import building from "@/assets/bfg-building-wide.asset.json";
+import floor from "@/assets/bfg-floor.asset.json";
+import { site } from "@/lib/site";
 
 const stats = [
-  { icon: Users, label: "Active Members", value: "1.2K+" },
-  { icon: Flame, label: "Years Training", value: "7+" },
-  { icon: ShieldCheck, label: "Certified Coaches", value: "12" },
-  { icon: Sparkles, label: "Avg. Rating", value: "4.5★" },
+  { icon: Users, label: "Instagram Fam", value: site.followers },
+  { icon: Flame, label: "Open Daily", value: "7 days" },
+  { icon: ShieldCheck, label: "Ladies Only", value: "10–2" },
+  { icon: Sparkles, label: "Google Rating", value: `${site.rating}★` },
 ];
 
 export function About() {
@@ -25,19 +26,21 @@ export function About() {
             <div className="grid grid-cols-2 gap-4">
               <img
                 src={building.url}
-                alt="Physiques Gym Building"
+                alt="BFG building, Rehman Plaza G-11 Markaz Islamabad"
                 className="aspect-[3/4] w-full rounded-2xl object-cover ring-1 ring-border"
+                loading="lazy"
               />
               <img
-                src={lobby.url}
-                alt="Physiques Gym Interior"
+                src={floor.url}
+                alt="BFG cardio and strength floor"
                 className="mt-10 aspect-[3/4] w-full rounded-2xl object-cover ring-1 ring-border"
+                loading="lazy"
               />
             </div>
             <div className="absolute -bottom-6 -right-2 hidden rounded-2xl border border-neon/30 bg-surface px-6 py-4 shadow-neon sm:block">
-              <div className="font-display text-3xl text-neon">7+</div>
+              <div className="font-display text-3xl text-neon">{site.rating}★</div>
               <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                Years strong
+                {site.reviews} Reviews
               </div>
             </div>
           </motion.div>
@@ -49,18 +52,18 @@ export function About() {
             transition={{ duration: 0.7 }}
           >
             <span className="text-xs font-semibold uppercase tracking-[0.25em] text-neon">
-              About Physiques
+              About BFG
             </span>
             <h2 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
               Fitness isn't a hobby. <br />
               <span className="text-neon">It's a lifestyle.</span>
             </h2>
             <p className="mt-5 text-muted-foreground">
-              Physiques is Johar Town's destination for serious training. From
-              free weights and CrossFit to sauna and steam recovery, every inch
-              of the floor is built around your transformation. Our certified
-              coaches design programs around your body, lifestyle, and goals —
-              no cookie-cutter plans, ever.
+              Body Fit Gym is G-11's destination for serious training — full
+              strength floor, premium cardio line-up, and dedicated ladies-only
+              hours every day from 10 AM to 2 PM. Whether you train casually or
+              chase competition, our coaches build plans around your body and
+              your schedule.
             </p>
 
             <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
