@@ -16,6 +16,19 @@ const goals = ["Weight Loss", "Muscle Gain", "Personal Training", "Summer Booste
 export function Contact() {
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [selectedGoal, setSelectedGoal] = useState<string>(goals[0]);
+
+  useEffect(() => {
+    const onSelect = (e: Event) => {
+      const detail = (e as CustomEvent<string>).detail;
+      if (detail && goals.includes(detail)) {
+        setSelectedGoal(detail);
+        setSent(false);
+      }
+    };
+    window.addEventListener("physiques:select-goal", onSelect as EventListener);
+    return () => window.removeEventListener("physiques:select-goal", onSelect as EventListener);
+  }, []);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
