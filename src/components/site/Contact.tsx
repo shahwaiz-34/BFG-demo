@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 import { ArrowRight, Mail, MapPin, MessageCircle, Phone, User } from "lucide-react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
@@ -86,6 +87,9 @@ export function Contact() {
     );
     window.open(`https://wa.me/${site.whatsapp}?text=${text}`, "_blank", "noopener");
     setSent(true);
+    toast.success("Message forwarded to WhatsApp!", {
+      description: "A coach will reach out within hours to confirm your trial.",
+    });
   };
 
   return (
