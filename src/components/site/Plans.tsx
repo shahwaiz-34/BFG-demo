@@ -1,6 +1,19 @@
 import { motion } from "framer-motion";
 import { Check, Sparkles } from "lucide-react";
-import { plans, site } from "@/lib/site";
+import { plans } from "@/lib/site";
+
+const goalMap: Record<string, string> = {
+  "General Membership": "General Fitness",
+  "Personal Training": "Personal Training",
+  "Summer Booster": "Summer Booster",
+};
+
+function choosePlan(planName: string) {
+  const goal = goalMap[planName] ?? planName;
+  window.dispatchEvent(new CustomEvent("physiques:select-goal", { detail: goal }));
+  const el = document.getElementById("contact");
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export function Plans() {
   return (
@@ -61,8 +74,9 @@ export function Plans() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={`tel:${site.phone}`}
+              <button
+                type="button"
+                onClick={() => choosePlan(p.name)}
                 className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition ${
                   p.featured
                     ? "bg-neon text-primary-foreground hover:brightness-110"
@@ -70,7 +84,7 @@ export function Plans() {
                 }`}
               >
                 Get Started
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>
