@@ -74,8 +74,9 @@ export function Plans() {
                   </li>
                 ))}
               </ul>
-              <a
-                href={`tel:${site.phone}`}
+              <button
+                type="button"
+                onClick={() => choosePlan(p.name)}
                 className={`mt-8 inline-flex items-center justify-center rounded-full px-6 py-3 text-sm font-semibold transition ${
                   p.featured
                     ? "bg-neon text-primary-foreground hover:brightness-110"
@@ -83,7 +84,7 @@ export function Plans() {
                 }`}
               >
                 Get Started
-              </a>
+              </button>
             </motion.div>
           ))}
         </div>
