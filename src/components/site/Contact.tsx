@@ -78,9 +78,10 @@ export function Contact() {
       return;
     }
     setErrors({});
+    const phoneFmt = normalizePhone(parsed.data.phone).display;
     const text = encodeURIComponent(
-      `Hi Physiques! I'm ${parsed.data.name}. Email: ${parsed.data.email}. Goal: ${parsed.data.goal}. Phone: ${parsed.data.phone}.${
-        parsed.data.message ? " " + parsed.data.message : ""
+      `Hi Physiques! I'm ${parsed.data.name}.\nEmail: ${parsed.data.email}\nGoal: ${parsed.data.goal}\nPhone: ${phoneFmt}${
+        parsed.data.message ? "\nNote: " + parsed.data.message : ""
       }`,
     );
     window.open(`https://wa.me/${site.whatsapp}?text=${text}`, "_blank", "noopener");
