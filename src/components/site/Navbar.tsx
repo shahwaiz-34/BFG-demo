@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.asset.json";
-import { site } from "@/lib/site";
+
 
 const links = [
   { label: "Home", href: "#home" },
@@ -54,10 +54,15 @@ export function Navbar() {
         </ul>
 
         <a
-          href={`tel:${site.phone}`}
-          className="hidden items-center gap-2 rounded-full bg-neon px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-neon transition hover:brightness-110 lg:inline-flex"
+          href="#contact"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+          }}
+          className="group hidden items-center gap-2 rounded-full bg-neon px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-neon transition hover:brightness-110 lg:inline-flex"
         >
-          <Phone className="h-4 w-4" /> Book a Trial
+          Book Now
+          <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
         </a>
 
         <button
@@ -91,10 +96,15 @@ export function Navbar() {
               ))}
               <li>
                 <a
-                  href={`tel:${site.phone}`}
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpen(false);
+                    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
                   className="mt-2 flex items-center justify-center gap-2 rounded-full bg-neon px-5 py-3 text-sm font-semibold text-primary-foreground"
                 >
-                  <Phone className="h-4 w-4" /> Book a Trial
+                  Book Now <ArrowRight className="h-4 w-4" />
                 </a>
               </li>
             </ul>
