@@ -227,7 +227,7 @@ export function Contact() {
 
                   <div>
                     <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Message <span className="normal-case text-muted-foreground/70">(optional)</span>
+                      Message
                     </label>
                     <div className="relative">
                       <Mail className="pointer-events-none absolute left-4 top-4 h-4 w-4 text-neon" />
