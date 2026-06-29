@@ -245,7 +245,7 @@ export function Contact() {
                     type="submit"
                     className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-neon px-7 py-4 text-sm font-semibold text-primary-foreground shadow-neon transition hover:brightness-110"
                   >
-                    Send via Instagram
+                    Send
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                   </button>
                   <p className="text-center text-[11px] text-muted-foreground">
