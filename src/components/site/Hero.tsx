@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Dumbbell, MapPin, Star } from "lucide-react";
-import building from "@/assets/bfg-building.asset.json";
+import heroBg from "@/assets/bfg-hero-bg.asset.json";
 import logo from "@/assets/bfg-logo.asset.json";
 import { site } from "@/lib/site";
 
@@ -10,8 +10,23 @@ export function Hero() {
       id="home"
       className="relative min-h-screen overflow-hidden pt-28 pb-20"
     >
-      <div className="absolute inset-0 bg-grid opacity-40" />
-      <div className="absolute -left-40 top-20 h-[480px] w-[480px] rounded-full bg-neon/20 blur-[140px]" />
+      {/* Background image */}
+      <div className="absolute inset-0">
+        <img
+          src={heroBg.url}
+          alt="Body Fit Gym storefront in G-11 Markaz, Islamabad"
+          className="h-full w-full object-cover object-center"
+          loading="eager"
+          fetchPriority="high"
+        />
+        {/* Layered overlays for legibility on all screen sizes */}
+        <div className="absolute inset-0 bg-background/75 sm:bg-background/65" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/30 lg:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+      </div>
+
+      <div className="absolute inset-0 bg-grid opacity-20" />
+      <div className="absolute -left-40 top-20 h-[480px] w-[480px] rounded-full bg-neon/15 blur-[140px]" />
       <div className="absolute -right-32 bottom-0 h-[420px] w-[420px] rounded-full bg-neon/10 blur-[140px]" />
 
       <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
@@ -20,7 +35,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-neon/30 bg-neon/5 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-neon"
+            className="inline-flex items-center gap-2 rounded-full border border-neon/30 bg-neon/5 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-neon backdrop-blur"
           >
             <Dumbbell className="h-3.5 w-3.5" /> Islamabad's Body Fit Gym
           </motion.div>
@@ -42,7 +57,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
-            className="mt-6 max-w-xl text-base text-muted-foreground sm:text-lg"
+            className="mt-6 max-w-xl text-base text-foreground/80 sm:text-lg"
           >
             BFG is a premium training floor in G-11 Markaz, Islamabad — strength,
             cardio, and conditioning under one roof with dedicated ladies-only
@@ -64,7 +79,7 @@ export function Hero() {
             </a>
             <a
               href="#community"
-              className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-semibold text-foreground transition hover:border-neon hover:text-neon"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-7 py-3.5 text-sm font-semibold text-foreground backdrop-blur transition hover:border-neon hover:text-neon"
             >
               Tour the Floor
             </a>
@@ -84,60 +99,55 @@ export function Hero() {
               </div>
               <span className="text-sm text-foreground">
                 <span className="font-semibold">{site.rating}</span>
-                <span className="text-muted-foreground"> · {site.reviews} Google reviews</span>
+                <span className="text-foreground/70"> · {site.reviews} Google reviews</span>
               </span>
             </div>
             <div className="h-6 w-px bg-border" />
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-foreground/80">
               <span className="font-semibold text-foreground">{site.followers}</span> Instagram
             </div>
           </motion.div>
         </div>
 
+        {/* Floating info card — visible on lg+ to complement the bg photo */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative lg:col-span-5"
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+          className="hidden lg:col-span-5 lg:block"
         >
-          <div className="relative mx-auto w-full max-w-xl">
+          <div className="relative mx-auto w-full max-w-sm">
             <div className="absolute -inset-6 rounded-[2rem] bg-neon/20 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[1.75rem] border border-neon/30 shadow-neon">
-              <motion.img
-                src={building.url}
-                alt="Body Fit Gym building in G-11 Markaz, Islamabad"
-                className="aspect-[4/5] w-full object-cover"
-                initial={{ scale: 1.08 }}
-                animate={{ scale: 1 }}
-                transition={{ duration: 1.4, ease: "easeOut" }}
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/90 via-background/10 to-transparent" />
+            <div className="relative rounded-2xl border border-neon/30 bg-background/60 p-6 backdrop-blur-xl shadow-neon">
+              <div className="flex items-center gap-3">
+                <img src={logo.url} alt="" className="h-12 w-12 rounded-lg bg-black object-contain p-1.5" />
+                <div>
+                  <p className="font-display text-xl leading-none text-neon">BODY FIT GYM</p>
+                  <p className="mt-1 text-xs text-foreground/70">Est. 2018 · G-11 Markaz</p>
+                </div>
+              </div>
 
-              <div className="absolute inset-x-0 bottom-0 p-5">
-                <div className="flex items-center gap-2 rounded-xl border border-neon/30 bg-background/60 px-3 py-2 backdrop-blur">
-                  <MapPin className="h-4 w-4 text-neon" />
-                  <span className="text-xs text-foreground/90">
-                    G-11 Markaz · Islamabad
-                  </span>
-                  <span className="ml-auto rounded-full bg-neon px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
-                    Open Today
-                  </span>
+              <div className="mt-5 flex items-center gap-2 rounded-xl border border-neon/30 bg-neon/5 px-3 py-2">
+                <MapPin className="h-4 w-4 text-neon" />
+                <span className="text-xs text-foreground/90">
+                  Rehman Plaza · G-11, Islamabad
+                </span>
+                <span className="ml-auto rounded-full bg-neon px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                  Open
+                </span>
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 gap-3">
+                <div className="rounded-lg border border-border bg-surface/60 p-3">
+                  <p className="text-[10px] uppercase tracking-wider text-foreground/60">Daily</p>
+                  <p className="font-display text-base text-foreground">6AM – 12AM</p>
+                </div>
+                <div className="rounded-lg border border-border bg-surface/60 p-3">
+                  <p className="text-[10px] uppercase tracking-wider text-foreground/60">Ladies</p>
+                  <p className="font-display text-base text-neon">10AM – 2PM</p>
                 </div>
               </div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="absolute -left-4 top-6 hidden items-center gap-3 rounded-xl border border-border bg-surface/95 px-3 py-2 shadow-xl backdrop-blur sm:flex"
-            >
-              <img src={logo.url} alt="" className="h-9 w-9 rounded-md bg-black object-contain p-1" />
-              <div>
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground">Since</p>
-                <p className="font-display text-base text-neon leading-none">2018</p>
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       </div>
