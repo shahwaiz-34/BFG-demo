@@ -188,7 +188,7 @@ export function Contact() {
                       maxLength={255}
                     />
                     <Field
-                      label="Phone (optional)"
+                      label="Phone"
                       name="phone"
                       icon={Phone}
                       placeholder="03XX XXXXXXX"
@@ -196,6 +196,7 @@ export function Contact() {
                       error={errors.phone}
                       maxLength={20}
                     />
+
                   </div>
 
                   <div>
