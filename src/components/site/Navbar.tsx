@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/assets/bfg-logo.asset.json";
+import logo from "@/assets/bfg-logo.png";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -36,10 +36,10 @@ export function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8 bg-[linear-gradient(to_bottom,rgba(250,204,21,0.15)_0%,rgba(250,204,21,0.08)_20%,#000000_55%,rgba(250,204,21,0.12)_100%)]">
         <a href="#home" className="flex items-center gap-2.5">
           <img
-            src={logo.url}
+            src={logo}
             alt="Body Fit Gym"
             className="h-10 w-10 rounded-lg bg-black object-contain p-1 ring-1 ring-neon/30"
           />
@@ -58,7 +58,7 @@ export function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-neon"
+                className="text-sm font-bold text-muted-foreground transition-colors hover:text-neon"
               >
                 {l.label}
               </a>

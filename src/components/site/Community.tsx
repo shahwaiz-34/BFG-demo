@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Dumbbell, ShieldCheck, Users } from "lucide-react";
-import floor from "@/assets/bfg-machines.asset.json";
-import bench from "@/assets/bfg-bench.asset.json";
-import treadmills from "@/assets/bfg-treadmills.asset.json";
+import floor from "@/assets/bfg-machines.png";
+import bench from "@/assets/bfg-bench.png";
+import treadmills from "@/assets/bfg-treadmills.png";
 
 const perks = [
   { icon: Dumbbell, title: "Premium equipment", desc: "Life Fitness cardio, plate-loaded strength, Olympic benches." },
@@ -27,7 +27,7 @@ export function Community() {
             <div className="grid grid-cols-6 gap-3 sm:gap-4">
               <div className="col-span-4 overflow-hidden rounded-3xl border border-neon/30 shadow-neon">
                 <img
-                  src={floor.url}
+                  src={floor}
                   alt="BFG strength floor with cable machines"
                   className="aspect-[4/5] w-full object-cover"
                   loading="lazy"
@@ -36,7 +36,7 @@ export function Community() {
               <div className="col-span-2 flex flex-col gap-3 sm:gap-4">
                 <div className="overflow-hidden rounded-2xl border border-border">
                   <img
-                    src={treadmills.url}
+                    src={treadmills}
                     alt="BFG treadmill line-up"
                     className="aspect-square w-full object-cover"
                     loading="lazy"
@@ -44,7 +44,7 @@ export function Community() {
                 </div>
                 <div className="overflow-hidden rounded-2xl border border-border">
                   <img
-                    src={bench.url}
+                    src={bench}
                     alt="BFG Olympic bench area"
                     className="aspect-square w-full object-cover"
                     loading="lazy"

@@ -1,5 +1,5 @@
 import { Instagram, Facebook, MapPin, MessageCircle } from "lucide-react";
-import logo from "@/assets/bfg-logo.asset.json";
+import logo from "@/assets/bfg-logo.png";
 import { site } from "@/lib/site";
 
 // TikTok icon (lucide doesn't ship one)
@@ -18,7 +18,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <div className="flex items-center gap-3">
-              <img src={logo.url} alt="BFG" className="h-12 w-12 rounded-lg bg-black object-contain p-1 ring-1 ring-neon/30" />
+              <img src={logo} alt="BFG" className="h-12 w-12 rounded-lg bg-black object-contain p-1 ring-1 ring-neon/30" />
               <div className="leading-tight">
                 <span className="font-display text-2xl tracking-wide">
                   B<span className="text-neon">F</span>G

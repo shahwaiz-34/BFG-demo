@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import logo from "@/assets/bfg-logo.asset.json";
+import logo from "@/assets/bfg-logo.png";
 
 export function Loader() {
   const [show, setShow] = useState(true);
@@ -62,7 +62,7 @@ export function Loader() {
                 transition={{ duration: 1.6, repeat: Infinity }}
               />
               <img
-                src={logo.url}
+                src={logo}
                 alt="Body Fit Gym"
                 className="relative h-24 w-24 rounded-full bg-black object-contain p-2 ring-1 ring-neon/50"
               />

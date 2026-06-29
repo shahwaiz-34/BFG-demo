@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ShieldCheck, Sparkles, Users } from "lucide-react";
-import review1 from "@/assets/bfg-review-1.asset.json";
-import review2 from "@/assets/bfg-review-2.asset.json";
+import review1 from "@/assets/bfg-review-1.mp4";
+import review2 from "@/assets/bfg-review-2.mp4";
 import { VideoReel, type Reel } from "./VideoReel";
 
 const trust = [
@@ -11,8 +11,8 @@ const trust = [
 ];
 
 const reels: Reel[] = [
-  { src: review1.url, label: "Member Review" },
-  { src: review2.url, label: "Inside Floor" },
+  { src: review1, label: "Member Review" },
+  { src: review2, label: "Inside Floor" },
 ];
 
 export function VideoTrust() {

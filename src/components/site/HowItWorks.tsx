@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { PhoneCall, ClipboardList, CalendarCheck, TrendingUp } from "lucide-react";
-import ad from "@/assets/bfg-ad.asset.json";
+import ad from "@/assets/bfg-ad.mp4";
 import { VideoReel } from "./VideoReel";
 
 const steps = [
@@ -57,7 +57,7 @@ export function HowItWorks() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5"
           >
-            <VideoReel reel={{ src: ad.url, label: "BFG Official" }} />
+            <VideoReel reel={{ src: ad, label: "BFG Official" }} />
           </motion.div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:col-span-7">

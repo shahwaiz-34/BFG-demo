@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Flame, ShieldCheck, Users, Sparkles } from "lucide-react";
-import building from "@/assets/bfg-building-wide.asset.json";
-import floor from "@/assets/bfg-floor.asset.json";
+import building from "@/assets/bfg-building.png";
+import floor from "@/assets/bfg-floor.png";
 import { site } from "@/lib/site";
 
 const stats = [
@@ -25,13 +25,13 @@ export function About() {
           >
             <div className="grid grid-cols-2 gap-4">
               <img
-                src={building.url}
+                src={building}
                 alt="BFG building, Rehman Plaza G-11 Markaz Islamabad"
                 className="aspect-[3/4] w-full rounded-2xl object-cover ring-1 ring-border"
                 loading="lazy"
               />
               <img
-                src={floor.url}
+                src={floor}
                 alt="BFG cardio and strength floor"
                 className="mt-10 aspect-[3/4] w-full rounded-2xl object-cover ring-1 ring-border"
                 loading="lazy"

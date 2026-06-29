@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Dumbbell, MapPin, Star } from "lucide-react";
-import heroBg from "@/assets/bfg-hero-bg.asset.json";
-import logo from "@/assets/bfg-logo.asset.json";
+import heroBg from "@/assets/bfg-hero-bg.png";
+import logo from "@/assets/bfg-logo.png";
 import { site } from "@/lib/site";
 
 export function Hero() {
@@ -13,7 +13,7 @@ export function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src={heroBg.url}
+          src={heroBg}
           alt="Body Fit Gym storefront in G-11 Markaz, Islamabad"
           className="h-full w-full object-cover object-center"
           loading="eager"
@@ -120,7 +120,7 @@ export function Hero() {
             <div className="absolute -inset-6 rounded-[2rem] bg-neon/20 blur-3xl" />
             <div className="relative rounded-2xl border border-neon/30 bg-background/60 p-6 backdrop-blur-xl shadow-neon">
               <div className="flex items-center gap-3">
-                <img src={logo.url} alt="" className="h-12 w-12 rounded-lg bg-black object-contain p-1.5" />
+                <img src={logo} alt="" className="h-12 w-12 rounded-lg bg-black object-contain p-1.5" />
                 <div>
                   <p className="font-display text-xl leading-none text-neon">BODY FIT GYM</p>
                   <p className="mt-1 text-xs text-foreground/70">Est. 2018 · G-11 Markaz</p>
