@@ -188,7 +188,7 @@ export function Contact() {
                       maxLength={255}
                     />
                     <Field
-                      label="Phone (optional)"
+                      label="Phone"
                       name="phone"
                       icon={Phone}
                       placeholder="03XX XXXXXXX"
@@ -196,6 +196,7 @@ export function Contact() {
                       error={errors.phone}
                       maxLength={20}
                     />
+
                   </div>
 
                   <div>
@@ -226,7 +227,7 @@ export function Contact() {
 
                   <div>
                     <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      Message <span className="normal-case text-muted-foreground/70">(optional)</span>
+                      Message
                     </label>
                     <div className="relative">
                       <Mail className="pointer-events-none absolute left-4 top-4 h-4 w-4 text-neon" />
@@ -244,7 +245,7 @@ export function Contact() {
                     type="submit"
                     className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-neon px-7 py-4 text-sm font-semibold text-primary-foreground shadow-neon transition hover:brightness-110"
                   >
-                    Send via Instagram
+                    Send
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
                   </button>
                   <p className="text-center text-[11px] text-muted-foreground">
